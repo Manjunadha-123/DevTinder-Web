@@ -5,23 +5,23 @@ import { addUser } from "../utils/userSlice";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constants";
 const Login = () => {
-  const [emailId, setEmailId] = useState("samba@gmail.com");
-  const [password, setPassword] = useState("Samba@123");
+  const [emailID, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLogin = async () => {
     try {
-      const res = await axios.post(
-        BASE_URL + "/login",
-        {
-          emailId,
-          password,
-        },
-        {
-          withCredentials: true,
-        }
-      );
+        const res = await axios.post(
+          BASE_URL + "/login",
+          {
+            emailID,
+            password,
+          },
+          {
+            withCredentials: true,
+          }
+        );
       dispatch(addUser(res.data));
       return navigate("/");
     } catch (err) {
@@ -39,7 +39,7 @@ const Login = () => {
               <legend className="fieldset-legend">Email ID</legend>
               <input
                 type="text"
-                value={emailId}
+                value={emailID}
                 className="input"
                 placeholder="Email ID"
                 onChange={(e) => setEmailId(e.target.value)}
